@@ -61,7 +61,10 @@ def hex_conversion(tuple, max):
 	for el in tuple:
 		# ajout de la valeur en hexadecimale a la string total
 		# en tenant compte de la valeur max possible
-		res += hexa(el + (255 - max))
+		if (el == 0):
+			res += '00'
+		else:
+			res += hexa(el + (255 - max))
 	return (res)
 
 

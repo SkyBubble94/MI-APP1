@@ -1,6 +1,7 @@
 # coding: utf-8
 from utils import *
 from fltk import *
+import sys
 
 def affiche_image(file_path):
 	'''
@@ -28,5 +29,8 @@ def affiche_image(file_path):
 
 
 if __name__ == '__main__':
-	file_path = input("Entrez le chemin de l'image que vous souhaitez afficher : ")
-	affiche_image(file_path)
+	if (len(sys.argv) == 1):
+		f = input("Veuillez entrer un nom de fichier : ")
+		affiche_image(f)
+	else:
+		affiche_image(sys.argv[1])
