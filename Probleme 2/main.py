@@ -26,8 +26,13 @@ if __name__ == '__main__':
     parser.add_argument("str", help="blabla", type=str, action="store")
     parser.add_argument("-f", "--fonts", help="blabla", type=str, action="store")
     parser.add_argument("-r", "--rainbow", help="blabla", action="store_true")
+    parser.add_argument("-c", "--colors", help="blabla", action="store")
+
     args = parser.parse_args()
-    string = str_m(args.str, args.fonts)
+    if (args.fonts):
+        string = str_m(args.str, args.fonts)
+    else:
+        string = str_m(args.str)
     c = -1
     colors = ["red", "yellow", "green", "cyan", "blue", "magenta", "grey","white"]
     for i in range(len(string[0])-1):
@@ -36,7 +41,10 @@ if __name__ == '__main__':
             if (args.rainbow):         
                 print(colored(string[j][i], colors[c]), end="")
             else:
-                print(string[j][i], end="")
+                if (args.colors) and (args.colors in colors):
+                    print(colored(string[j][i], args.colors), end="")
+                else:
+                    print(string[j][i], end="")
             #sys.stdout.flush()
         sleep(0.1)
         print('\r')
